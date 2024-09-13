@@ -33,7 +33,7 @@
                 <tr>
                     <td>${emp.id}</td>
                     <td>${emp.name}</td>
-                    <td>${emp.city}</td>
+                    <td>${emp.password}</td>
                     <td>${emp.hobbies}</td>
                     <td>${emp.gender}</td>
                     <td>${emp.departments}</td>

@@ -24,16 +24,16 @@ public class empDaoImpl implements empDao {
 
 	@Override
 	public void saveData(empEntity emp) {
-		String sql = "insert into empForm (name,city,hobbies,gender,departments,position,empImg)values(?,?,?,?,?,?,?)";
-		jt.update(sql, emp.getName(), emp.getCity(), String.join(",", emp.getHobbies()), emp.getGender(),
+		String sql = "insert into empForm (name,password,hobbies,gender,departments,position,empImg)values(?,?,?,?,?,?,?)";
+		jt.update(sql, emp.getName(), emp.getPassword(), String.join(",", emp.getHobbies()), emp.getGender(),
 				String.join(",", emp.getDepartments()), emp.getPosition(), emp.getEmpImg());
 	}
 
 	@Override
 	public void updateData(empEntity emp) {
 
-		String sql="update empForm set name=?,city=?,hobbies=?,gender=?,departments=?,position=?,empImg=? where id=?";
-		jt.update(sql,emp.getName(),emp.getCity(), String.join(",", emp.getHobbies()), emp.getGender(),
+		String sql="update empForm set name=?,password=?,hobbies=?,gender=?,departments=?,position=?,empImg=? where id=?";
+		jt.update(sql,emp.getName(),emp.getPassword(), String.join(",", emp.getHobbies()), emp.getGender(),
 				String.join(",", emp.getDepartments()), emp.getPosition(), emp.getEmpImg(),emp.getId());
 	}
 
@@ -63,7 +63,7 @@ public class empDaoImpl implements empDao {
 			empEntity emp = new empEntity();
 			emp.setId(rs.getInt(1));
 			emp.setName(rs.getString(2));
-			emp.setCity(rs.getString(3));
+			emp.setPassword(rs.getString(3));
 			emp.setHobbies(Arrays.asList(rs.getString(4).split(",")));
 			emp.setGender(rs.getString(5));
 			emp.setDepartments(Arrays.asList(rs.getString(6).split(",")));
@@ -72,5 +72,33 @@ public class empDaoImpl implements empDao {
 			return emp;
 		}
 	}
+
+	@Override
+	public void saveUser(users user) {
+		String sql = "insert into userssec (name,password,role)values(?,?,?)";
+		jt.update(sql, user.getName(), user.getPassword(),user.getRole());
+		
+	}
+
+	@Override
+	public users getUser(String name, String password) {
+	    String sql = "SELECT *FROM userssec WHERE name = ? AND password = ?";
+	    try {
+	        return jt.queryForObject(sql, new Object[]{name, password}, new RowMapper<users>() {
+	            @Override
+	            public users mapRow(ResultSet rs, int rowNum) throws SQLException {
+	                users user = new users();
+	                user.setId(rs.getInt("id"));
+	                user.setName(rs.getString("name"));
+	                user.setPassword(rs.getString("password"));
+	                return user;
+	            }
+	        });
+	    } catch (Exception e) {
+	        e.printStackTrace(); 
+	        return null;
+	    }
+	}
+
 
 }

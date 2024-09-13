@@ -11,10 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bootstrap Form</title>
 <!-- Bootstrap CSS -->
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	rel="stylesheet">
-
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 <style>
 .form-card {
 	max-width: 600px;
@@ -42,20 +40,45 @@
 	<div class="card form-card">
 		<div class="card-body">
 			<h4 class="text-center mb-4"
-				style="background-color: #5bc0de; /* Example color for 'User Information' */ padding: 10px; border-radius: 5px; box-shadow: 0 4px 6px rgba(200, 200, 200, 0.5);">${empData.id > 0 ? 'Update User':'User Form' }</h4>
+				style="background-color: #5bc0de;padding: 10px; border-radius: 5px; box-shadow: 0 4px 6px rgba(200, 200, 200, 0.5);">${empData.id > 0 ? 'Update Employees':'Employees Form' }</h4>
 			<form action="${empData.id > 0 ? '../saveData':'saveData' }" method="post" enctype="multipart/form-data">
 			
 				<input type="hidden" id="id" name="id" value="${empData.id > 0 ? empData.id:0}">
 
-				<div class="form-group">
-					<label for="name">Name</label> 
-					<input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" value="${empData.name}" required>
-				</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="name">UserName</label> 
+								<input type="text" class="form-control" id="name" name="name" placeholder="Enter your UserName" value="${empData.name}" autocomplete="off" required>
+							</div>
+						</div>
+						
+						<div class="col-md-6">
+						    <div class="form-group">
+						        <label for="name">Password</label> 
+						        <div class="input-group">
+						            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" value="${empData.password}" required>
+						            <div class="input-group-append">
+						                <span class="input-group-text" style="cursor: pointer;">
+						                    <i id="eyeIcon" class="fas fa-eye"></i> <!-- FontAwesome eye icon -->
+						                </span>
+						            </div>
+						        </div>
+						    </div>
+						</div>
 
-				<div class="form-group">
-					<label for="city">City</label> 
-					<input type="text" class="form-control" id="city" name="city" placeholder="Enter your city" value="${empData.city}" required>
-				</div>
+					</div>
+
+					
+					<div class="form-group">
+						<label for="role">Your Role</label> 
+						<select class="form-control" id="role" name="role">
+							<option>Admin</option>
+							<option>User</option>
+						</select>
+					</div>
+				
+
 
 				<div class="form-group">
 					<label>Hobbies</label>
@@ -128,6 +151,9 @@
 						<a href="${empData.id > 0 ? '../loadViewEmp':'loadViewEmp' }" class="btn btn-success w-100">View Employees</a>
 					</div>
 				</div>
+				<div class="container text-center mt-4">
+					<a class="text-center" href="LoginForm">Already User</a>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -136,6 +162,24 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#eyeIcon").on("click",function(){
+		if($("#password").attr('type')==='password'){
+			$("#password").attr('type','text');
+			$(this).removeClass("fa-eye").addClass("fa-eye-slash");
+		}
+		else{
+			$("#password").attr('type','password');
+			$(this).removeClass("fa-eye-slash").addClass("fa-eye");
+		}
+	})
+})
+</script>
+
+	
 </body>
 </html>

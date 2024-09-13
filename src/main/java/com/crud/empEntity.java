@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class empEntity {
 
 	private int id;
-	private String name, city;
+	private String name, password;
 	private List<String> hobbies;
 	private String gender;
 	private List<String> departments;
@@ -31,12 +31,12 @@ public class empEntity {
 		this.name = name;
 	}
 
-	public String getCity() {
-		return city;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public List<String> getHobbies() {
@@ -71,12 +71,12 @@ public class empEntity {
 		this.position = position;
 	}
 
-	public empEntity(int id, String name, String city, List<String> hobbies, String gender, List<String> departments,
+	public empEntity(int id, String name, String password, List<String> hobbies, String gender, List<String> departments,
 			String position, String empImg) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.city = city;
+		this.password = password;
 		this.hobbies = hobbies;
 		this.gender = gender;
 		this.departments = departments;

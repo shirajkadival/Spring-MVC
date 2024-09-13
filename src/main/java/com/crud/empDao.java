@@ -12,4 +12,8 @@ public interface empDao {
 	List<empEntity> getEmpAll();
 
 	void deleteEmp(int id);
+
+	void saveUser(users user);
+
+	users getUser(String name, String password);
 }

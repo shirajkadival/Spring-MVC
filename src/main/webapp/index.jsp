@@ -1,4 +1,4 @@
 <%
-response.sendRedirect("loadUserForm");
+response.sendRedirect("LoginForm");
 %>
 
